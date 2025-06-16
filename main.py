@@ -48,4 +48,4 @@ while beurten > 0:
         break
 
 if beurten == 0:
-    print("\nJe hebt helaas verloren. Het woord was:", gekozen_woord)
+    print("\nJe hebt helaas pindakaas verloren. Het woord was:", gekozen_woord)
