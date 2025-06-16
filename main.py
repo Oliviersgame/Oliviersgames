@@ -1,12 +1,13 @@
+import os
 import random
+
+def clear_screen():
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 def toon_geraden_woord(woord, geraden_letters):
     zichtbaar = ""
     for letter in woord:
-        if letter in geraden_letters:
-            zichtbaar += letter
-        else:
-            zichtbaar += "-"
+        zichtbaar += letter if letter in geraden_letters else "-"
     return zichtbaar
 
 galgje_stappen = [
@@ -96,23 +97,25 @@ max_fouten = len(galgje_stappen) - 1
 fouten = 0
 geraden_letters = []
 
-print("Welkom bij Galgje!")
-print(f"Je hebt {max_fouten} fouten om het woord te raden.")
-print(f"Het woord bestaat uit {len(gekozen_woord)} letters.")
-
 while fouten < max_fouten:
+    clear_screen()
+    print("Welkom bij Galgje!")
+    print(f"Je hebt {max_fouten} fouten om het woord te raden.")
+    print(f"Het woord bestaat uit {len(gekozen_woord)} letters.\n")
 
     print(galgje_stappen[fouten])
-    print("Huidige status: ", toon_geraden_woord(gekozen_woord, geraden_letters))
+    print("Huidige status:", toon_geraden_woord(gekozen_woord, geraden_letters))
 
     letter = input("Voer een letter in: ").lower()
 
     if len(letter) != 1 or not letter.isalpha():
         print("Voer alsjeblieft één geldige letter in.")
+        input("Druk op Enter om verder te gaan...")
         continue
 
     if letter in geraden_letters:
         print("Die letter heb je al geprobeerd.")
+        input("Druk op Enter om verder te gaan...")
         continue
 
     geraden_letters.append(letter)
@@ -124,9 +127,16 @@ while fouten < max_fouten:
         print(f"Helaas, de letter zit niet in het woord. Fouten: {fouten} van {max_fouten}")
 
     if toon_geraden_woord(gekozen_woord, geraden_letters) == gekozen_woord:
+        clear_screen()
+        print("Welkom bij Galgje!")
+        print(galgje_stappen[fouten])
         print("\nGefeliciteerd! Je hebt het woord geraden:", gekozen_woord)
         break
 
+    input("\nDruk op Enter voor de volgende beurt...")
+
 if fouten == max_fouten:
+    clear_screen()
+    print("Welkom bij Galgje!")
     print(galgje_stappen[fouten])
     print("\nJe hebt helaas verloren. Het woord was:", gekozen_woord)
