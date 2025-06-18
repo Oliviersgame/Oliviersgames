@@ -97,7 +97,7 @@ woordenlijst = [
     "serverbeheer", "clientbeheer", "browserbeheer", "internetbeheer",
     "websitebeheer", "applicatiebeheer", "softwarebeheer",
     "hardwarebeheer", "databasebeheer", "netwerkbeheer",
-    "autoband", "alex", "olivier", "gijs", "mikala", "martin(thosewhoknow)",
+    "autoband", "alex", "olivier", "gijs", "mikala", "martin"
 ]
 
 def speel_galgje():
@@ -115,7 +115,7 @@ def speel_galgje():
 
         print(galgje_stappen[fouten])
         print("Huidige status:", toon_geraden_woord(gekozen_woord, geraden_letters))
-        print("Fout geraden letters:", " ".join(foute_letters))
+        print("Fout geraden letters:", " ".join(sorted(foute_letters)))
 
         letter = input("Voer een letter in: ").lower()
 
@@ -147,7 +147,6 @@ def speel_galgje():
         print("Helaas, je hebt verloren.")
         print(galgje_stappen[fouten])
         print("Het woord was:", gekozen_woord)
-
 
 while True:
     speel_galgje()
